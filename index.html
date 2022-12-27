@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="form">
+        <form class="register-form">
+          <h1 class="msg"></h1>
+
+          <input type="text" placeholder="name" class="nom" name="myname" required />
+          <h5 class="msgun"></h5> 
+          <input type="password" placeholder="password" class="motDepass" name="mypassword" required />
+          <h5 class="msgdeux"></h5> 
+          <input type="email" placeholder="email address" class="mail" name="myemail" required />
+          <h5 class="msgtrois"></h5> 
+
+          <button class="but">create</button>
+          <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+        <form class="login-form">
+          <input type="text" placeholder="username" />
+          <input type="password" placeholder="password" />
+          <button>login</button>
+          <p class="message">
+            Not registered? <a href="#">Create an account</a>
+          </p>
+        </form>
+      </div>
+    </div>
+    <script>
+
+      let meName = document.querySelector(".nom");
+      let mePassword = document.querySelector(".motDepass");
+      let meEmail = document.querySelector(".mail");
+      let but = document.querySelector(".but");
+      let msg = document.querySelector("h1.msg");
+      let msgName = document.querySelector("h5.msgun");
+      let msgMdp = document.querySelector("h5.msgdeux");
+      let msgEmail = document.querySelector("h5.msgtrois");
+
+      meName.addEventListener("input", (a) => {});
+
+      mePassword.addEventListener("input", (b) => {});
+
+      meEmail.addEventListener("input", (c) => {});
+
+      but.addEventListener("click", (d) => {
+        let first = meName.value;
+        let second = mePassword.value;
+        let num = second.replace(/[^0-9]/gi, "");
+        let third = meEmail.value;
+        let aro = third.indexOf("@");
+        let point = third.indexOf(".");
+        let empty = "";
+        if (
+          meName.value === empty ||
+          mePassword.value === empty ||
+          meEmail.value === empty
+        ) {
+          d.preventDefault();
+          msg.innerHTML = "Votre formulaire est incomplet";
+        } else if (
+          first[0] === first[0].toLowerCase() ||
+          first[0] == Number(first[0])
+        ) {
+          d.preventDefault();
+          msgName.innerHTML =
+            "La première lettre doit être en majuscule.";
+        } else if (
+          second.length < 8 ||
+          second == second.toLowerCase() ||
+          Number(num) == 0
+        ) {
+          d.preventDefault();
+          msgMdp.innerHTML =
+            "Le mot de passe doit contenir min. 8 caractères, une majuscule et un chiffre";
+        } else if (aro == -1 || point == -1) {
+          d.preventDefault();
+          msgEmail.innerHTML =
+            "L'email doit contenir un . et un @";
+        } else {
+          d.preventDefault();
+          msg.innerHTML = "Bienvenue l'artiste";
+          msgName.innerHTML = "Correct";
+          msgName.style.color = 'green';
+          msgMdp.innerHTML = "Correct";
+          msgMdp.style.color = 'green';
+          msgEmail.innerHTML = "Correct";
+          msgEmail.style.color = 'green';
+        }
+      });
+
+    </script>
+  </body>
+</html>
